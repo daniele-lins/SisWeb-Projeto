@@ -53,7 +53,7 @@
         </p>
         <h2>Sobre a Morcegurumi Crochês</h2>
         <p>
-            A Morcegurumi Crochês é um ateliê de amigurumis feitos à mão, especializado em bonecos de crochê
+            A Morcegurumi Crochês é um pequeno ateliê de amigurumis feitos à mão, especializado em bonecos de crochê
             personalizados. Nossos produtos são confeccionados com carinho e dedicação, visando sempre a qualidade e a satisfação dos nossos clientes.
         </p>
         <p>
@@ -64,12 +64,24 @@
 </section>
 <section id="catalogo">
     <div class="container">
-        <h2>Catálogo</h2>
+        <div class="categorias">
+            <h2>Catálogo</h2>
             <button>Personagens</button>
             <button>Animais</button>
             <button>Criaturas</button>
             <button>Conjuntos</button>
             <button>Outros</button>
+        </div>
+        <div class="filtros">
+            <select name="select">
+                <option value="filtrar" selected>Filtrar por:</option>
+                <option value="popularidade">Popularidade</option>
+                <option value="maiorpreco">Maior preço</option>
+                <option value="menorpreco">Menor preço</option>
+                <option value="maisnovos">Mais novos</option>
+                <option value="maisvelhos">Mais velhos</option>
+            </select>
+        </div>
     </div>
 </section>
 <section id="contato">
@@ -77,7 +89,7 @@
         <h2>Não encontrou o que gostaria? Fale conosco e peça seu amigurumi personalizado!</h2>
         <p>Contate-nos pelo nosso Instagram, WhatsApp, ou preencha este formulário com seu nome, e-mail e descrição
             do que deseja, que nós te atenderemos!</p>
-        <form action="#" method="post">
+        <form>
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" required>
             <label for="email">E-mail:</label>
