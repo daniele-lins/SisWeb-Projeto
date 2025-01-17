@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morcegurumi Crochês</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
+
 <body>
 <header>
     <div class="container">
@@ -26,22 +27,36 @@
         </div>
     </div>
 </header>
+
 <section id="homepage">
     <div class="container">
         <h2>Destaques</h2>
-        <div class="destaques">
-            <div class="destaque">
+        <div class="slideshow">
+            <input type="radio" name="slides" id="destaque1" checked>
+            <input type="radio" name="slides" id="destaque2">
+            <input type="radio" name="slides" id="destaque3">
+        </div>
+
+        <div class="slides">
+            <div class="slide destaque1">
                 <img src="img/destaque1.jpg" alt="Destaque 1">
             </div>
-            <div class="destaque">
+            <div class="slide destaque2">
                 <img src="img/destaque2.jpg" alt="Destaque 2">
             </div>
-            <div class="destaque">
+            <div class="slide destaque3">
                 <img src="img/destaque3.jpg" alt="Destaque 3">
             </div>
         </div>
+
+        <div class="navigation">
+            <label for="destaque1"></label>
+            <label for="destaque2"></label>
+            <label for="destaque3"></label>
+        </div>
     </div>
 </section>
+
 <section id="sobre">
     <div class="container">
         <h2>O que é um Amigurumi?</h2>
