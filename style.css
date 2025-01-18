@@ -57,51 +57,72 @@ header .banner h4 {
     color: #666;
 }
 
-#homepage {
+#destaques {
     padding: 40px 0;
 }
 
-#homepage h2 {
+#destaques h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2rem;
     color: #ff7b7b;
 }
 
+/* Estilo do carrossel */
 .slideshow {
     position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    height: 400px; /* Defina uma altura fixa para o carrossel */
+    background-color: #f8f8f8; /* Cor de fundo para áreas vazias */
 }
 
 .slides {
     display: flex;
-    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
 }
 
-.slides .slide {
-    flex: 0 0 100%;
-    text-align: center;
-}
-
-.slides img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    align-self: normal;
-}
-
-.navigation {
+.slide {
+    min-width: 100%;
+    height: 400px; /* Mesma altura do carrossel */
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    align-items: center;
+    justify-content: normal;
+    box-sizing: border-box;
 }
 
-.navigation label {
-    width: 10px;
-    height: 10px;
-    background: #ff7b7b;
-    border-radius: 50%;
-    margin: 0 5px;
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mostra toda a imagem sem cortar */
+    object-position: center; /* Centraliza a imagem */
+    display: block;
+    background-color: #f8f8f8; /* Cor de fundo para áreas vazias */
+}
+
+/* Botões de navegação */
+.navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.navigation button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    padding: 10px 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #sobre {
@@ -163,7 +184,7 @@ header .banner h4 {
 .produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 50px;
 }
 
 .produto {
@@ -190,14 +211,14 @@ header .banner h4 {
 
 .produto h3 {
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
 .produto p {
     font-size: 1rem;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
@@ -218,7 +239,10 @@ header .banner h4 {
 .produto:hover {
     transform: scale(1.05);
 }
-
+/* Estilo para a mensagem "Em produção!" */
+#produtosList p {
+    text-align: center;  /* Centraliza o texto horizontalmente */
+}
 
 #contato {
     padding: 40px 0;
