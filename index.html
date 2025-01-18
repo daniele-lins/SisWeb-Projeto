@@ -29,30 +29,22 @@
 </header>
 
 <section id="homepage">
-    <div class="container">
-        <h2>Destaques</h2>
-        <div class="slideshow">
-            <input type="radio" name="slides" id="destaque1" checked>
-            <input type="radio" name="slides" id="destaque2">
-            <input type="radio" name="slides" id="destaque3">
-        </div>
-
+    <h2>Destaques</h2>
+    <div class="slideshow">
         <div class="slides">
-            <div class="slide destaque1">
+            <div class="slide" id="slide1">
                 <img src="img/destaque1.jpg" alt="Destaque 1">
             </div>
-            <div class="slide destaque2">
+            <div class="slide" id="slide2">
                 <img src="img/destaque2.jpg" alt="Destaque 2">
             </div>
-            <div class="slide destaque3">
+            <div class="slide" id="slide3">
                 <img src="img/destaque3.jpg" alt="Destaque 3">
             </div>
         </div>
-
         <div class="navigation">
-            <label for="destaque1"></label>
-            <label for="destaque2"></label>
-            <label for="destaque3"></label>
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
         </div>
     </div>
 </section>
@@ -81,14 +73,14 @@
     <div class="container">
         <div class="categorias">
             <h2>Catálogo</h2>
-            <button>Personagens</button>
-            <button>Animais</button>
-            <button>Criaturas</button>
-            <button>Conjuntos</button>
-            <button>Outros</button>
+            <button onclick="filterCategory('personagens')">Personagens</button>
+            <button onclick="filterCategory('animais')">Animais</button>
+            <button onclick="filterCategory('criaturas')">Criaturas</button>
+            <button onclick="filterCategory('conjuntos')">Conjuntos</button>
+            <button onclick="filterCategory('outros')">Outros</button>
         </div>
         <div class="filtros">
-            <select name="select">
+            <select name="select" id="filtroSelect" onchange="applyFilter()">
                 <option value="filtrar" selected>Filtrar por:</option>
                 <option value="popularidade">Popularidade</option>
                 <option value="maiorpreco">Maior preço</option>
@@ -97,49 +89,8 @@
                 <option value="maisvelhos">Mais velhos</option>
             </select>
         </div>
-        <div class="produtos">
-            <div class="produto">
-                <img src="img/destaque1.jpg" alt="Produto 1">
-                <h3>Amigurumi de Joaninha Prendedor de Cortina</h3>
-                <p>R$ 30,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/destaque2.jpg" alt="Produto 2">
-                <h3>Amigurumi de Sol e Lua</h3>
-                <p>R$ 30,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/destaque3.jpg" alt="Produto 3">
-                <h3>Amigurumi de Personagem Mable Gravity Falls</h3>
-                <p>R$ 40,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/produto4.jpg" alt="Produto 4">
-                <h3>Amigurumi de Personagem do Sonic</h3>
-                <p>R$ 40,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/produto5.jpg" alt="Produto 5">
-                <h3>Amigurumi de Água-viva</h3>
-                <p>R$ 20,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/produto6.jpg" alt="Produto 6">
-                <h3>Amigurumi de Polvo</h3>
-                <p>R$ 20,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="produto">
-                <img src="img/produto7.jpg" alt="Produto 7">
-                <h3>Amigurumi de Personagem Luffy One Piece</h3>
-                <p>R$ 40,00</p>
-                <button>Comprar</button>
-            </div>
+        <div class="produtos" id="produtosList">
+            <!-- Produtos serão exibidos aqui pelo JavaScript -->
         </div>
     </div>
 </section>
