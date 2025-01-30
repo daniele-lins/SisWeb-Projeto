@@ -90,6 +90,15 @@
                 <option value="maisvelhos">Mais velhos</option>
             </select>
         </div>
+        <div class="adicionar-produto">
+            <h3>Adicionar Novo Produto</h3>
+            <form id="produtoForm">
+                <input type="text" id="nome" placeholder="Nome do Produto" required>
+                <input type="text" id="categoria" placeholder="Categoria" required>
+                <input type="number" id="preco" placeholder="Preço" required>
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </div>
         <div class="produtos" id="produtosList">
             <!-- Produtos serão exibidos aqui pelo JavaScript -->
         </div>
