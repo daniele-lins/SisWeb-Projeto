@@ -1,99 +1,148 @@
+const produtosPreCadastrados = [
+    {
+        nome: "Amigurumi de Joaninha Prendedor de Cortina",
+        categoria: "Animais",
+        preco: 30.00,
+        imagem: "img/destaque1.jpg",
+        unidadesCompradas: 10
+    },
+    {
+        nome: "Amigurumi de Sol e Lua",
+        categoria: "Criaturas",
+        preco: 30.00,
+        imagem: "img/destaque2.jpg",
+        unidadesCompradas: 15
+    },
+    {
+        nome: "Amigurumi de Personagem Mable Gravity Falls",
+        categoria: "Personagens",
+        preco: 40.00,
+        imagem: "img/destaque3.jpg",
+        unidadesCompradas: 20
+    },
+    {
+        nome: "Amigurumi de Personagem do Sonic",
+        categoria: "Personagens",
+        preco: 40.00,
+        imagem: "img/produto4.jpg",
+        unidadesCompradas: 12
+    },
+    {
+        nome: "Amigurumi de Água-viva",
+        categoria: "Criaturas",
+        preco: 20.00,
+        imagem: "img/produto5.jpg",
+        unidadesCompradas: 8
+    },
+    {
+        nome: "Amigurumi de Polvo",
+        categoria: "Animais",
+        preco: 20.00,
+        imagem: "img/produto6.jpg",
+        unidadesCompradas: 5
+    },
+    {
+        nome: "Amigurumi de Personagem Luffy One Piece",
+        categoria: "Personagens",
+        preco: 40.00,
+        imagem: "img/produto7.jpg",
+        unidadesCompradas: 18
+    }
+];
+
+function renderProdutos(produtos) {
+    const produtosList = document.getElementById("produtosList");
+    produtosList.innerHTML = '';
+
+    if (produtos.length === 0) {
+        const mensagem = document.createElement('p');
+        mensagem.textContent = "Em produção!";
+        produtosList.appendChild(mensagem);
+    } else {
+        produtos.forEach(produto => {
+            const divProduto = document.createElement('div');
+            divProduto.classList.add('produto');
+            divProduto.innerHTML = `
+                <img src="${produto.imagem}" alt="${produto.nome}">
+                <h3>${produto.nome}</h3>
+                <p>R$ ${produto.preco.toFixed(2)}</p>
+                <p>Quantidade comprada: ${produto.unidadesCompradas}</p>
+                <button>Comprar</button>
+            `;
+            produtosList.appendChild(divProduto);
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderProdutos(produtosPreCadastrados);
+});
+
+
 let currentSlide = 0;
 
 function changeSlide(direction) {
     const slides = document.querySelectorAll(".slide");
     const totalSlides = slides.length;
 
-    // Oculta o slide atual
     slides[currentSlide].style.display = "none";
 
-    // Atualiza o índice do slide
     currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
 
-    // Exibe o próximo slide
     slides[currentSlide].style.display = "block";
 }
 
-// Inicializa o carrossel mostrando o primeiro slide
 document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelectorAll(".slide");
     slides.forEach((slide, index) => {
         slide.style.display = index === 0 ? "block" : "none";
     });
+
+    renderProdutos(produtosPreCadastrados);
 });
 
-// Dados dos produtos com tags, preço e quantidade comprada
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "http://localhost:8080/api/produtos";
-    
-    async function carregarProdutos() {
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error("Erro ao buscar produtos");
-            
-            const produtos = await response.json();
-            exibirProdutos(produtos);
-        } catch (error) {
-            console.error("Erro:", error);
-            document.getElementById("produtosList").innerHTML = "Erro ao carregar produtos.";
-        }
-    }
+    renderProdutos(produtosPreCadastrados);
 
-    function exibirProdutos(produtos) {
-        const container = document.getElementById("produtosList");
-        container.innerHTML = "";
-        
-        produtos.forEach(produto => {
-            const produtoDiv = document.createElement("div");
-            produtoDiv.classList.add("produto");
-            produtoDiv.innerHTML = `
-                <h3>${produto.nome}</h3>
-                <p>Categoria: ${produto.categoria}</p>
-                <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
-            `;
-            container.appendChild(produtoDiv);
-        });
-    }
-
-    document.getElementById("produtoForm").addEventListener("submit", async (event) => {
+    document.getElementById("produtoForm").addEventListener("submit", (event) => {
         event.preventDefault();
-        
+
         const nome = document.getElementById("nome").value;
         const categoria = document.getElementById("categoria").value;
         const preco = parseFloat(document.getElementById("preco").value);
-        
-        const novoProduto = { nome, categoria, preco };
-        
-        try {
-            const response = await fetch(apiUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(novoProduto),
-            });
-            
-            if (!response.ok) throw new Error("Erro ao adicionar produto");
-            
-            document.getElementById("produtoForm").reset();
-            carregarProdutos();
-        } catch (error) {
-            console.error("Erro:", error);
-        }
-    });
+        const imagem = document.getElementById("imagem").files[0];
 
-    carregarProdutos();
+        const novoProduto = {
+            nome: nome,
+            categoria: categoria,
+            preco: preco,
+            imagem: URL.createObjectURL(imagem),
+            unidadesCompradas: 0
+        };
+
+        produtosPreCadastrados.push(novoProduto);
+
+        document.getElementById("produtoForm").reset();
+
+        renderProdutos(produtosPreCadastrados);
+    });
 });
 
-// Função para aplicar filtro de popularidade
+function filterCategory(categoria) {
+    const produtosFiltrados = produtosPreCadastrados.filter(produto => produto.categoria === categoria);
+    renderProdutos(produtosFiltrados);
+}
+
 function applyFilter() {
     const filtro = document.getElementById("filtroSelect").value;
-    let produtosFiltrados = [...produtos]; // Copiar a lista original de produtos
+    let produtosFiltrados = [...produtosPreCadastrados];
 
     if (filtro === 'popularidade') {
         produtosFiltrados.sort((a, b) => b.unidadesCompradas - a.unidadesCompradas);
     } else if (filtro === 'maiorpreco') {
-        produtosFiltrados.sort((a, b) => b.preco - a.preco);
+        produtosFiltrados = [produtosFiltrados.reduce((a, b) => a.preco > b.preco ? a : b)];
     } else if (filtro === 'menorpreco') {
-        produtosFiltrados.sort((a, b) => a.preco - b.preco);
+        produtosFiltrados = [produtosFiltrados.reduce((a, b) => a.preco < b.preco ? a : b)];
     } else if (filtro === 'maisnovos') {
         produtosFiltrados.sort((a, b) => b.dataAdicao - a.dataAdicao);
     } else if (filtro === 'maisvelhos') {
@@ -103,5 +152,4 @@ function applyFilter() {
     renderProdutos(produtosFiltrados);
 }
 
-// Exibir todos os produtos por padrão ao carregar a página
 renderProdutos(produtos);
