@@ -70,15 +70,16 @@
         </p>
     </div>
 </section>
+
 <section id="catalogo">
     <div class="container">
         <div class="categorias">
             <h2>Catálogo</h2>
-            <button onclick="filterCategory('personagens')">Personagens</button>
-            <button onclick="filterCategory('animais')">Animais</button>
-            <button onclick="filterCategory('criaturas')">Criaturas</button>
-            <button onclick="filterCategory('conjuntos')">Conjuntos</button>
-            <button onclick="filterCategory('outros')">Outros</button>
+            <button onclick="filterCategory('Personagens')">Personagens</button>
+            <button onclick="filterCategory('Animais')">Animais</button>
+            <button onclick="filterCategory('Criaturas')">Criaturas</button>
+            <button onclick="filterCategory('Conjuntos')">Conjuntos</button>
+            <button onclick="filterCategory('Outros')">Outros</button>
         </div>
         <div class="filtros">
             <select name="select" id="filtroSelect" onchange="applyFilter()">
@@ -93,8 +94,18 @@
         <div class="produtos" id="produtosList">
             <!-- Produtos serão exibidos aqui pelo JavaScript -->
         </div>
+        <div class="adicionar-produto">
+            <form id="produtoForm">
+                <input type="text" id="nome" placeholder="Nome do Produto" required>
+                <input type="text" id="categoria" placeholder="Categoria" required>
+                <input type="number" id="preco" placeholder="Preço" required>
+                <input type="file" id="imagem" accept="image/*" required>
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </div>
     </div>
 </section>
+
 <section id="contato">
     <div class="container">
         <h2>Não encontrou o que gostaria? Fale conosco e peça seu amigurumi personalizado!</h2>
@@ -111,6 +122,7 @@
         </form>
     </div>
 </section>
+
 <footer>
     <div class="container">
         <p>&copy; 2025 Morcegurumi Crochês. Todos os direitos reservados.</p>
